@@ -1,3 +1,6 @@
+//step 1- get the api keys and define them (in step 7 you will move them there together with axios)
+//step 2- get axios
+
 //step 4- create function to calculate date
 function formatDate(timestamp) {
   let date = new Date(timestamp);
@@ -43,21 +46,20 @@ function displayTemperature(response) {
   iconElement.setAttribute("alt", response.data.condition.description);
 }
 
-//step-6 create function for the search form
-function search(event) {
-  event.preventDefault();
-  let cityInputElement = document.querySelector("#city-input");
-  console.log(cityInputElement.value);
+//step-7 create function that will receive the city
+function search(city) {
+  let apiKey = "c80a0aa8bf432o8df5a714d834et33a3";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
 }
 
-//step 1- get the api keys and define them
-let apiKey = "c80a0aa8bf432o8df5a714d834et33a3";
-let city = "Africa";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-
-//step 2- get axios
-axios.get(apiUrl).then(displayTemperature);
+//step-6 create function for the search form
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
 
 //step-5 create a form on html (inside it must be input), after define it and add event selector
 let form = document.querySelector("#search-form");
-form.addEventListener("Submit", search);
+form.addEventListener("submit", handleSubmit);
