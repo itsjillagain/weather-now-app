@@ -4,19 +4,21 @@ body {
 
 h1 {
   color: #005f69;
-  font-size: 30px;
+  font-size: 35px;
   margin-bottom: 0;
   font-weight: bold;
 }
 ul {
-  margin: 0;
+  margin-left: 0;
   padding: 0;
+  color: #454b1b;
 }
 
 li {
   list-style: none;
   margin: 0;
   padding: 0;
+  color: #454b1b;
 }
 li:first-letter {
   text-transform: capitalize;
@@ -24,7 +26,8 @@ li:first-letter {
 small {
   display: block;
   text-align: center;
-  margin-block: 10px;
+  margin: 0;
+  color: #148f77;
 }
 .weather-app-wrapper {
   max-width: 600px;
@@ -62,4 +65,7 @@ small {
 }
 .fahrenheit {
   text-decoration: none;
+}
+.other-info {
+  margin-left: 100px;
 }
