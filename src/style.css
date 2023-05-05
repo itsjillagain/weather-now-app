@@ -37,7 +37,7 @@ small {
   padding: 40px;
   border: 1px solid #add8e6;
   border-radius: 15px;
-  background-color: #eef7fa;
+  background-color: #f5f5dc;
 }
 .github-link {
   text-decoration: none;
@@ -52,12 +52,13 @@ small {
 }
 .weather-temperature strong {
   font-size: 64px;
-  color: #132257;
+  color: #148f77;
   line-height: 1;
 }
 .weather-temperature .units {
   position: relative;
-  font-size: 16pxpx;
+  font-size: 16px;
+  margin-left: 10px;
 }
 .fahrenheit {
   text-decoration: none;
