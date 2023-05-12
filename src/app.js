@@ -24,6 +24,39 @@ function formatDate(timestamp) {
   let day = days[date.getDay()];
   return `${day}, ${hours}:${minutes}`;
 }
+// step x - for adding weather forecast and duplicating it
+function displayForecast(response) {
+  console.log(response.data.coordinates);
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2">
+                <div class="weather-forecast-date">${day}</div>
+                <img src="images/clear-sky-day.png" alt="weather" width="36" />
+                <br />
+                <div class="weather-forecast-temperature">
+                  <span class="weather-temp-max">18° </span>
+                  <span class="weather-temp-min">10°</span>
+                </div>
+              </div>`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+//step xx get API working for forecast
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "c80a0aa8bf432o8df5a714d834et33a3";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&unit=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
 //step 3- changing the labels, this is wear you add id labels to your html
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
@@ -47,6 +80,8 @@ function displayTemperature(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   iconElement.setAttribute("alt", response.data.condition.description);
+
+  getForecast(response.data.coordinates);
 }
 
 //step-7 create function that will receive the city
@@ -82,6 +117,8 @@ function displayCelciusTemp(event) {
 }
 
 let celciusTemperature = null;
+
+displayForecast();
 
 //step-5 create a form on html (inside it must be input), after define it and add event selector
 let form = document.querySelector("#search-form");
