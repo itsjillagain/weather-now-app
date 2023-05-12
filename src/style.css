@@ -89,3 +89,20 @@ small {
 .f-link {
   text-decoration: none;
 }
+.weather-forecast {
+  margin-top: 20px;
+  text-align: center;
+  color: #005f69;
+}
+
+.weather-forecast-date {
+  font-size: 15px;
+  opacity: 0.8;
+  font-weight: bold;
+}
+.weather-forecast-temperature {
+  font-size: 13px;
+}
+.weather-temp-min {
+  opacity: 0.6;
+}
