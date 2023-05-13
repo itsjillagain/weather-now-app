@@ -36,8 +36,8 @@ small {
 
 .weather-app {
   max-width: 600px;
-  margin: 40px auto;
-  padding: 40px;
+  margin: 50px auto;
+  padding: 30px;
   border: 1px solid #add8e6;
   border-radius: 15px;
   background-color: #f5f5dc;
@@ -54,7 +54,7 @@ small {
   width: 64px;
 }
 .weather-temperature strong {
-  font-size: 64px;
+  font-size: 67px;
   color: #148f77;
   line-height: 1;
 }

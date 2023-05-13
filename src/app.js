@@ -26,12 +26,13 @@ function formatDate(timestamp) {
 }
 
 //creating the weather forecast
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
 
-  //stores the HTML of the forecast
-  let forecastHTML = `<div class="row">`;
   let days = ["Sat", "Sun", "Mon", "Tue", "Thu", "Fri"];
+
+  let forecastHTML = `<div class="row">`;
   days.forEach(function (day) {
     forecastHTML =
       forecastHTML +
@@ -51,6 +52,14 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
+//getting the API to fetch coordinates
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "c80a0aa8bf432o8df5a714d834et33a3";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
 //step 3- changing the labels, this is wear you add id labels to your html
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
@@ -74,6 +83,8 @@ function displayTemperature(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   iconElement.setAttribute("alt", response.data.condition.description);
+
+  getForecast(response.data.coordinates);
 }
 
 //step-7 create function that will receive the city
@@ -109,8 +120,6 @@ function displayCelciusTemp(event) {
 }
 
 let celciusTemperature = null;
-
-displayForecast();
 
 //step-5 create a form on html (inside it must be input), after define it and add event selector
 let form = document.querySelector("#search-form");
